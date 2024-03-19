@@ -20,6 +20,7 @@ from product.views import hello_view
 from product.views import goodbye_view
 from product.views import main_page_view
 from product.views import current_date_view
+from product.views import product_list_view
 
 
 urlpatterns = [
@@ -28,5 +29,7 @@ urlpatterns = [
     path('', main_page_view),
     path('goodbye/', goodbye_view),
     path('current_date/', current_date_view),
+    path('products/', product_list_view)
+
 
 ]
