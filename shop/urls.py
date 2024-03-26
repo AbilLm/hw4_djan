@@ -22,7 +22,8 @@ from product.views import main_page_view
 from product.views import current_date_view
 from product.views import product_list_view
 from product.views import product_detail_view
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,7 +33,8 @@ urlpatterns = [
     path('current_date/', current_date_view),
     path('products/', product_list_view),
     path('products/<int:pr_id>/', product_detail_view),
-    path('category', category_page),
-
+    path('categories', category_page),
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

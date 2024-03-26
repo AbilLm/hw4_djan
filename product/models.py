@@ -1,10 +1,13 @@
 from django.db import models
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
 
     def __str__(self):
         return self.name
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
@@ -29,6 +32,8 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.price}"
+
+
 class Review(models.Model):
     RATING_CHOICES = (
         (1, '1 - Ужасно'),
@@ -45,17 +50,15 @@ class Review(models.Model):
     def __str__(self):
         return f"Review for {self.product.title}"
 
+
 class Comment(models.Model):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         related_name='comments'
 
-
     )
     text = models.TextField()
 
     def __str__(self):
         return f"{self.product.title} - {self.text}"
-
-
