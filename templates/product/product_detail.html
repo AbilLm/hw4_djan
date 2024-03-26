@@ -1,0 +1,59 @@
+{% extends 'components/navbar.html' %}
+
+{% block content %}
+
+<h1>{{ product.title }}</h1>
+
+<p>{{ product.description }}</p>
+
+<p>Published on {{ product.created_at }} </p>
+
+<p>
+    Price : {{ product.price }}
+</p>
+
+
+
+<h1>
+    Tags:
+</h1>
+
+{% for tag in product.tags.all %}
+    <p>{{ tag.name }}</p>
+{% endfor %}
+
+<h1>
+    Category:
+</h1>
+    <ul>
+{% for category in categories %}
+    <li>{{ category.name }}</li>
+{% endfor %}
+</ul>
+<h1>
+    Comments:
+</h1>
+
+{% for comment in product.comments.all %}
+    <p>{{ comment.text }}</p>
+    <p>Published on {{ comment.created_at }}</p>
+{% endfor %}
+
+<h2>Reviews:</h2>
+  {% if review %}
+    <ul>
+      {% for review in review %}
+        <li>
+          Rating: {{ review.rating }}<br>
+          {% if review.comment %}
+            Comment: {{ review.comment }}<br>
+          {% endif %}
+          Published on: {{ review.created_at }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No reviews yet.</p>
+  {% endif %}
+{% endblock %}
+
